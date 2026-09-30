@@ -1,13 +1,13 @@
 {
   "root": "/tmp/am-ws/c-1790732960888-yt28d",
   "name": "c-1790732960888-yt28d",
-  "generatedAt": "2026-09-30T17:39:29.830Z",
-  "fileCount": 18,
-  "dirCount": 4,
+  "generatedAt": "2026-09-30T17:45:54.316Z",
+  "fileCount": 23,
+  "dirCount": 8,
   "languages": {
     "Markdown": 6,
     "JSON": 3,
-    "TypeScript": 5,
+    "TypeScript": 10,
     "JavaScript": 2,
     "CSS": 1
   },
@@ -61,9 +61,47 @@
       ]
     },
     {
-      "dir": "src/components",
+      "dir": "src/app/admissions",
       "fileCount": 1,
       "files": [
+        "page.tsx"
+      ],
+      "symbols": []
+    },
+    {
+      "dir": "src/app/api/tutor",
+      "fileCount": 1,
+      "files": [
+        "route.ts"
+      ],
+      "symbols": [
+        {
+          "name": "POST",
+          "kind": "fn"
+        }
+      ]
+    },
+    {
+      "dir": "src/app/curriculum",
+      "fileCount": 1,
+      "files": [
+        "page.tsx"
+      ],
+      "symbols": []
+    },
+    {
+      "dir": "src/app/projects",
+      "fileCount": 1,
+      "files": [
+        "page.tsx"
+      ],
+      "symbols": []
+    },
+    {
+      "dir": "src/components",
+      "fileCount": 2,
+      "files": [
+        "CodingChallenge.tsx",
         "Nav.tsx"
       ],
       "symbols": []

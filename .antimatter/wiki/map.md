@@ -1,10 +1,10 @@
 # Workspace Map — c-1790732960888-yt28d
-_Generated 2026-09-30 · 18 files · 4 directories_  
+_Generated 2026-09-30 · 23 files · 8 directories_  
 _Deterministic structural map. Regenerate with the `map` tool or "Antimatter: Map Workspace". Do not hand-edit._
 
 ## Languages
+- TypeScript: 10
 - Markdown: 6
-- TypeScript: 5
 - JSON: 3
 - JavaScript: 2
 - CSS: 1
@@ -25,5 +25,18 @@ _Deterministic structural map. Regenerate with the `map` tool or "Antimatter: Ma
 - symbols: metadata (const)
 - files: globals.css, layout.tsx, page.tsx
 
-### `src/components` — 1 file
-- files: Nav.tsx
+### `src/app/admissions` — 1 file
+- files: page.tsx
+
+### `src/app/api/tutor` — 1 file
+- symbols: POST (fn)
+- files: route.ts
+
+### `src/app/curriculum` — 1 file
+- files: page.tsx
+
+### `src/app/projects` — 1 file
+- files: page.tsx
+
+### `src/components` — 2 files
+- files: CodingChallenge.tsx, Nav.tsx
