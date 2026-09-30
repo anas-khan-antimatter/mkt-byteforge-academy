@@ -2,74 +2,87 @@
 
 import { useEffect, useRef, useState } from "react";
 import Nav from "@/components/Nav";
+import CodingChallenge from "@/components/CodingChallenge";
 
 const programs = [
   {
     title: "Software Engineering",
-    subtitle: "Full-Stack Immersive",
+    subtitle: "FULL-STACK",
     description:
-      "Master JavaScript, TypeScript, React, Node.js, Python, and cloud infrastructure. Build production-grade apps from day one.",
+      "JavaScript, TypeScript, React, Node.js, Python, Go, cloud infra. Ship production code from week 1. Build your portfolio with real PRs.",
     duration: "16 weeks • Full-time",
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-      </svg>
-    ),
+    modules: 12,
+    color: "from-purple-500 to-purple-700",
+    glow: "shadow-purple-500/20",
   },
   {
     title: "Data Science & AI",
-    subtitle: "Machine Learning Track",
+    subtitle: "ML / AI",
     description:
-      "Go from zero to building ML pipelines. Python, pandas, scikit-learn, TensorFlow, LLMs, and data engineering at scale.",
+      "Python, pandas, scikit-learn, TensorFlow, LLMs, RAG pipelines. From zero to deploying models in production. Build an ML portfolio.",
     duration: "14 weeks • Full-time",
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-      </svg>
-    ),
+    modules: 10,
+    color: "from-cyan-500 to-cyan-700",
+    glow: "shadow-cyan-500/20",
   },
   {
-    title: "UX Design & Research",
-    subtitle: "Product Design Track",
+    title: "Systems & Infrastructure",
+    subtitle: "DEVOPS",
     description:
-      "Design thinking, Figma mastery, user research, prototyping, and interaction design. Ship portfolios that land design roles.",
+      "Linux, Docker, Kubernetes, CI/CD, Terraform, cloud architecture. Become the engineer who ships and runs what they build.",
     duration: "12 weeks • Full-time",
-    icon: (
-      <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
-      </svg>
-    ),
+    modules: 9,
+    color: "from-emerald-500 to-emerald-700",
+    glow: "shadow-emerald-500/20",
   },
 ];
 
 const outcomes = [
-  { stat: "94%", label: "Job placement within 6 months" },
-  { stat: "$82k", label: "Average starting salary" },
-  { stat: "600+", label: "Hiring partner companies" },
-  { stat: "4.9/5", label: "Student satisfaction rating" },
+  { stat: "94%", label: "placed within 6 months", icon: "🚀" },
+  { stat: "$85k", label: "median starting salary", icon: "💰" },
+  { stat: "600+", label: "hiring partners", icon: "🏢" },
+  { stat: "4.9/5", label: "student satisfaction", icon: "⭐" },
 ];
 
-const highlights = [
+const features = [
   {
-    title: "Project-Based Curriculum",
-    description: "Ship 4 portfolio projects and a capstone. Real code, real PRs, real impact.",
+    title: "Live Code Reviews",
+    desc: "Every PR gets reviewed by senior engineers. Real feedback, real improvement.",
+    icon: "⎇",
   },
   {
-    title: "1:1 Career Coaching",
-    description: "Dedicated coach from week one — resume, LinkedIn, mock interviews, salary negotiation.",
+    title: "Mock Interviews",
+    desc: "Weekly whiteboard and system design sessions with FAANG engineers.",
+    icon: "⚡",
   },
   {
-    title: "Lifetime Alumni Network",
-    description: "Join 2,000+ alumni at companies like Google, Stripe, Airbnb, and Figma.",
+    title: "Career Accelerator",
+    desc: "Resume clinic, LinkedIn optimization, salary negotiation workshop.",
+    icon: "◆",
+  },
+  {
+    title: "Alumni Network",
+    desc: "Join 2,000+ builders at Google, Stripe, Airbnb, and more.",
+    icon: "⬡",
   },
 ];
+
+const cohortDeadline = "Dec 15, 2026";
 
 export default function HomePage() {
   const [mounted, setMounted] = useState(false);
-  const heroRef = useRef<HTMLDivElement>(null);
+  const [typedText, setTypedText] = useState("");
+  const fullText = "> bootcamp.init()";
 
   useEffect(() => {
     setMounted(true);
+    let i = 0;
+    const interval = setInterval(() => {
+      setTypedText(fullText.slice(0, i + 1));
+      i++;
+      if (i >= fullText.length) clearInterval(interval);
+    }, 80);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -78,50 +91,78 @@ export default function HomePage() {
 
       <main>
         {/* ===== HERO ===== */}
-        <section
-          ref={heroRef}
-          className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-b from-brand-50 via-white to-white"
-        >
-          {/* Background grid */}
-          <div className="absolute inset-0 bg-grid opacity-40" />
+        <section className="relative min-h-screen flex items-center overflow-hidden bg-surface">
+          {/* Scan lines overlay */}
+          <div className="absolute inset-0 scan-line pointer-events-none z-10" />
 
-          {/* Floating gradient orbs */}
-          <div className="absolute top-1/4 -left-32 w-[500px] h-[500px] rounded-full bg-gradient-to-br from-brand-300/30 to-accent-300/20 blur-3xl animate-float" />
-          <div className="absolute bottom-1/4 -right-32 w-[400px] h-[400px] rounded-full bg-gradient-to-br from-accent-300/20 to-brand-300/30 blur-3xl animate-float" style={{ animationDelay: "-3s" }} />
+          {/* Grid BG */}
+          <div className="absolute inset-0 bg-grid opacity-60" />
 
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20 lg:pt-40 lg:pb-28">
+          {/* Glow orbs */}
+          <div className="absolute top-1/4 -left-32 w-[600px] h-[600px] rounded-full bg-purple-500/5 blur-[120px]" />
+          <div className="absolute bottom-1/4 -right-32 w-[500px] h-[500px] rounded-full bg-cyan-500/5 blur-[120px]" />
+
+          {/* Terminal decorations */}
+          <div className="absolute top-28 left-8 hidden lg:block">
+            <div className="font-mono text-[10px] text-gray-600 leading-relaxed opacity-40">
+              {`┌─[byteforge@terminal]─[~/bootcamp]`}
+              <br />
+              {`├─ $ `}<span className="text-purple-400">cat</span> <span className="text-cyan-400">welcome.txt</span>
+            </div>
+          </div>
+          <div className="absolute bottom-32 right-8 hidden lg:block">
+            <div className="font-mono text-[10px] text-gray-600 leading-relaxed opacity-30">
+              {`└─[${new Date().getFullYear()}-${String(new Date().getMonth()+1).padStart(2,'0')}-${String(new Date().getDate()).padStart(2,'0')}]`}
+            </div>
+          </div>
+
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 lg:pt-40 lg:pb-28 w-full">
             <div className="max-w-4xl mx-auto text-center">
-              {/* Badge */}
+              {/* Terminal badge */}
               <div
-                className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-100/80 border border-brand-200/50 text-brand-700 text-xs font-medium mb-8 transition-all duration-700 ${
-                  mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                className={`inline-flex items-center gap-3 px-4 py-2 rounded-md bg-purple-950/40 border border-purple-800/40 font-mono text-xs mb-10 transition-all duration-700 ${
+                  mounted ? "opacity-100" : "opacity-0"
                 }`}
               >
-                <span className="w-2 h-2 rounded-full bg-brand-500 animate-pulse" />
-                Now accepting applications for Winter 2026 cohort
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                <span className="text-green-400">SYSTEM</span>
+                <span className="text-gray-500">|</span>
+                <span className="text-gray-300">
+                  Applications open:{" "}
+                  <span className="text-cyan-300">{cohortDeadline}</span>
+                </span>
+              </div>
+
+              {/* Terminal-style prompt */}
+              <div className="font-mono text-sm text-gray-500 mb-2 text-left max-w-xl mx-auto">
+                <span className="text-green-400">visitor@byteforge</span>
+                <span className="text-gray-600">:</span>
+                <span className="text-purple-300">~</span>
+                <span className="text-gray-600">$ </span>
+                {typedText}
+                <span className="typing-cursor" />
               </div>
 
               {/* Headline */}
               <h1
-                className={`text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-display font-black leading-[1.05] tracking-tight mb-6 transition-all duration-700 delay-100 ${
+                className={`text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black leading-[1.05] tracking-tight mb-6 transition-all duration-700 delay-100 ${
                   mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
               >
-                <span className="text-brand-950">Code your</span>
+                <span className="text-white">Ship. Build.</span>
                 <br />
-                <span className="text-gradient">future</span>
-                <span className="text-brand-950">.</span>
+                <span className="text-gradient">Deploy.</span>
+                <span className="text-white"> Repeat.</span>
               </h1>
 
               {/* Subhead */}
               <p
-                className={`text-lg sm:text-xl text-brand-700/80 max-w-2xl mx-auto leading-relaxed mb-10 transition-all duration-700 delay-200 ${
+                className={`text-base sm:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed mb-10 font-mono transition-all duration-700 delay-200 ${
                   mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
               >
-                Byteforge Academy is the most intensive, career-focused coding bootcamp.
-                16 weeks to go from beginner to job-ready software engineer, data scientist, or designer.
-                No degree required. No experience necessary.
+                Byteforge Academy is the terminal-to-production coding bootcamp.
+                16 weeks. Real code. Real PRs. Real career. No degree required.
               </p>
 
               {/* CTAs */}
@@ -131,37 +172,69 @@ export default function HomePage() {
                 }`}
               >
                 <a
-                  href="#apply"
-                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-brand-600 to-accent-600 text-white text-base font-semibold shadow-xl shadow-brand-500/30 hover:shadow-brand-500/50 hover:scale-105 transition-all duration-200"
+                  href="/admissions"
+                  className="group inline-flex items-center gap-3 px-8 py-4 rounded-lg bg-gradient-to-r from-purple-600 to-cyan-500 text-white text-base font-semibold shadow-xl shadow-purple-500/25 hover:shadow-purple-500/50 hover:scale-105 transition-all duration-200"
                 >
-                  Apply Now — It&apos;s Free to Start
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <span className="font-mono text-xs opacity-70">$</span>
+                  Apply Now — Free to Start
+                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </a>
                 <a
-                  href="#programs"
-                  className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full border-2 border-brand-200 text-brand-700 text-base font-semibold hover:border-brand-400 hover:bg-brand-50/50 transition-all duration-200"
+                  href="/curriculum"
+                  className="inline-flex items-center gap-3 px-8 py-4 rounded-lg border border-purple-700/50 text-gray-300 text-base font-mono text-sm hover:bg-purple-950/30 hover:border-purple-500/50 transition-all duration-200"
                 >
-                  View Programs
-                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
+                  <span className="text-purple-400">#</span>
+                  View Curriculum
                 </a>
+              </div>
+
+              {/* Code snippet preview */}
+              <div
+                className={`mt-16 max-w-lg mx-auto transition-all duration-700 delay-500 ${
+                  mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                }`}
+              >
+                <div className="rounded-lg bg-surface-light border border-purple-900/30 overflow-hidden">
+                  <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-purple-900/20 bg-surface/50">
+                    <span className="w-3 h-3 rounded-full bg-red-500/50" />
+                    <span className="w-3 h-3 rounded-full bg-yellow-500/50" />
+                    <span className="w-3 h-3 rounded-full bg-green-500/50" />
+                    <span className="ml-3 font-mono text-[10px] text-gray-500">career.ts</span>
+                  </div>
+                  <div className="px-4 py-3 font-mono text-xs leading-relaxed">
+                    <div>
+                      <span className="text-purple-400">const</span>{" "}
+                      <span className="text-cyan-300">future</span>{" "}
+                      <span className="text-gray-500">=</span>{" "}
+                      <span className="text-yellow-300">await</span>{" "}
+                      <span className="text-green-400">Byteforge</span>
+                      <span className="text-gray-500">.</span>
+                      <span className="text-purple-300">build</span>
+                      <span className="text-gray-500">(</span>
+                      <span className="text-yellow-200">you</span>
+                      <span className="text-gray-500">)</span>
+                    </div>
+                    <div>
+                      <span className="text-gray-600">// &gt; Career deployed successfully 🚀</span>
+                    </div>
+                  </div>
+                </div>
               </div>
 
               {/* Trust bar */}
               <div
-                className={`mt-16 pt-8 border-t border-brand-100 transition-all duration-700 delay-500 ${
-                  mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                className={`mt-12 pt-8 border-t border-purple-900/30 transition-all duration-700 delay-700 ${
+                  mounted ? "opacity-100" : "opacity-0"
                 }`}
               >
-                <p className="text-xs font-medium uppercase tracking-widest text-brand-400 mb-4">
-                  Our graduates work at
+                <p className="text-[10px] font-mono uppercase tracking-widest text-gray-600 mb-4">
+                  # graduates ship at
                 </p>
-                <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-brand-300">
-                  {["Google", "Stripe", "Airbnb", "Figma", "Meta", "Notion"].map((company) => (
-                    <span key={company} className="text-sm font-semibold tracking-tight text-brand-400/60">
+                <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-3">
+                  {["Google", "Stripe", "Airbnb", "Figma", "Meta"].map((company) => (
+                    <span key={company} className="text-xs font-mono font-semibold tracking-tight text-gray-500 hover:text-purple-300 transition-colors">
                       {company}
                     </span>
                   ))}
@@ -171,18 +244,38 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* ===== PROGRAMS ===== */}
-        <section id="programs" className="relative py-24 lg:py-32 bg-white">
+        {/* ===== LIVE CODE CHALLENGE (in-page) ===== */}
+        <section className="relative py-24 lg:py-28 bg-surface border-t border-purple-900/20">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <span className="inline-block px-3 py-1 rounded-full bg-brand-100 text-brand-700 text-xs font-semibold uppercase tracking-wider mb-4">
-                Our Programs
+            <div className="text-center mb-12">
+              <span className="inline-block px-3 py-1 rounded bg-purple-950/50 border border-purple-800/40 text-purple-300 text-[10px] font-mono uppercase tracking-wider mb-4">
+                TRY THIS — LIVE CODING CHALLENGE
               </span>
-              <h2 className="text-4xl sm:text-5xl font-display font-bold text-brand-950 mb-4">
-                Choose your path
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-3">
+                Write code. Get instant feedback.
               </h2>
-              <p className="text-lg text-brand-600 max-w-2xl mx-auto">
-                Three intensive tracks designed to take you from zero to job-ready in weeks, not years.
+              <p className="text-sm text-gray-400 font-mono max-w-xl mx-auto">
+                Solve a real JavaScript kata right here in the browser.
+                No setup. No login. Just ship.
+              </p>
+            </div>
+            <CodingChallenge />
+          </div>
+        </section>
+
+        {/* ===== PROGRAMS ===== */}
+        <section id="programs" className="relative py-24 lg:py-32 bg-surface-light border-t border-purple-900/20">
+          <div className="absolute inset-0 bg-grid opacity-20" />
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-16">
+              <span className="inline-block px-3 py-1 rounded bg-purple-950/50 border border-purple-800/40 text-purple-300 text-[10px] font-mono uppercase tracking-wider mb-4">
+                PROGRAMS
+              </span>
+              <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+                Choose your <span className="text-gradient">terminal</span>
+              </h2>
+              <p className="text-sm text-gray-400 font-mono max-w-2xl mx-auto">
+                Three intensive tracks. Each one ends with you shipping a production app to your portfolio.
               </p>
             </div>
 
@@ -190,24 +283,32 @@ export default function HomePage() {
               {programs.map((program, i) => (
                 <div
                   key={program.title}
-                  className={`group relative rounded-2xl p-8 bg-white border-2 border-brand-100 hover:border-brand-300 shadow-sm hover:shadow-xl hover:shadow-brand-500/10 transition-all duration-300 ${
+                  className={`group relative rounded-xl p-8 bg-surface border border-purple-900/30 hover:border-purple-500/50 shadow-lg hover:shadow-xl transition-all duration-300 ${
                     mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                   }`}
                   style={{ transitionDelay: `${(i + 1) * 100}ms` }}
                 >
-                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-100 to-accent-100 flex items-center justify-center text-brand-600 group-hover:from-brand-500 group-hover:to-accent-500 group-hover:text-white transition-all duration-300 mb-6">
-                    {program.icon}
+                  {/* Top accent bar */}
+                  <div className={`absolute top-0 left-6 right-6 h-0.5 bg-gradient-to-r ${program.color} rounded-full opacity-0 group-hover:opacity-100 transition-opacity`} />
+
+                  <div className="flex items-center gap-3 mb-5">
+                    <div className={`w-10 h-10 rounded-lg bg-gradient-to-br ${program.color} flex items-center justify-center text-black font-mono text-xs font-bold`}>
+                      {String(i + 1).padStart(2, "0")}
+                    </div>
+                    <span className="text-[10px] font-mono font-semibold text-cyan-400 uppercase tracking-widest">
+                      {program.subtitle}
+                    </span>
                   </div>
-                  <span className="text-xs font-mono font-semibold text-accent-600 uppercase tracking-wider">
-                    {program.subtitle}
-                  </span>
-                  <h3 className="text-xl font-bold text-brand-950 mt-1 mb-3">{program.title}</h3>
-                  <p className="text-brand-600 text-sm leading-relaxed mb-5">{program.description}</p>
-                  <div className="flex items-center gap-2 text-xs font-medium text-brand-400">
-                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    {program.duration}
+                  <h3 className="text-xl font-bold text-white mt-1 mb-3">{program.title}</h3>
+                  <p className="text-gray-400 text-sm leading-relaxed mb-5">{program.description}</p>
+                  <div className="flex items-center justify-between text-xs font-mono">
+                    <span className="text-gray-500 flex items-center gap-1.5">
+                      <span className="w-1 h-1 rounded-full bg-purple-400" />
+                      {program.duration}
+                    </span>
+                    <span className="text-purple-400">
+                      {program.modules} modules
+                    </span>
                   </div>
                 </div>
               ))}
@@ -216,58 +317,53 @@ export default function HomePage() {
         </section>
 
         {/* ===== OUTCOMES ===== */}
-        <section id="outcomes" className="relative py-24 lg:py-32 bg-gradient-to-b from-brand-950 via-brand-900 to-brand-950 overflow-hidden">
-          {/* Background pattern */}
-          <div className="absolute inset-0 opacity-[0.04]">
-            <div className="absolute inset-0 bg-grid" />
-          </div>
+        <section id="outcomes" className="relative py-24 lg:py-32 bg-surface overflow-hidden">
+          <div className="absolute inset-0 bg-grid-white opacity-30" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-purple-500/2 blur-[150px]" />
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-16">
-              <span className="inline-block px-3 py-1 rounded-full bg-brand-800/50 text-brand-300 text-xs font-semibold uppercase tracking-wider border border-brand-700/50 mb-4">
-                Real Outcomes
+              <span className="inline-block px-3 py-1 rounded bg-purple-950/50 border border-purple-800/40 text-purple-300 text-[10px] font-mono uppercase tracking-wider mb-4">
+                REAL OUTCOMES
               </span>
-              <h2 className="text-4xl sm:text-5xl font-display font-bold text-white mb-4">
-                Results that speak
+              <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+                Results that <span className="text-cyan-400">compile</span>
               </h2>
-              <p className="text-lg text-brand-300 max-w-2xl mx-auto">
-                Our graduates go on to build careers at the world&apos;s best companies.
+              <p className="text-sm text-gray-400 font-mono">
+                Our graduates build careers at the world&apos;s best engineering orgs.
               </p>
             </div>
 
             {/* Stats grid */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
               {outcomes.map((item, i) => (
                 <div
                   key={item.label}
-                  className={`text-center p-8 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all duration-300 ${
+                  className={`text-center p-8 rounded-xl bg-surface border border-purple-900/30 hover:border-cyan-500/30 transition-all duration-300 group ${
                     mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                   }`}
-                  style={{ transitionDelay: `${(i + 1) * 150}ms` }}
+                  style={{ transitionDelay: `${(i + 1) * 100}ms` }}
                 >
-                  <div className="text-4xl sm:text-5xl font-display font-black text-gradient mb-2">{item.stat}</div>
-                  <p className="text-sm text-brand-300 leading-relaxed">{item.label}</p>
+                  <div className="text-3xl mb-1">{item.icon}</div>
+                  <div className="text-4xl font-black text-white mb-1 font-mono">{item.stat}</div>
+                  <div className="text-xs text-gray-500 font-mono">{item.label}</div>
                 </div>
               ))}
             </div>
 
-            {/* Highlights */}
-            <div className="grid md:grid-cols-3 gap-6">
-              {highlights.map((item, i) => (
+            {/* Feature grid */}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {features.map((feat, i) => (
                 <div
-                  key={item.title}
-                  className={`p-6 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-brand-500/30 transition-all duration-300 ${
-                    mounted ? "opacity-100" : "opacity-0"
+                  key={feat.title}
+                  className={`p-6 rounded-xl bg-surface-light border border-purple-900/20 hover:border-purple-700/40 transition-all duration-300 group ${
+                    mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                   }`}
-                  style={{ transitionDelay: `${(i + 1) * 200}ms` }}
+                  style={{ transitionDelay: `${(i + 5) * 100}ms` }}
                 >
-                  <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-500 to-accent-500 flex items-center justify-center text-white mb-4">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  <h3 className="text-white font-semibold mb-2">{item.title}</h3>
-                  <p className="text-sm text-brand-300 leading-relaxed">{item.description}</p>
+                  <div className="text-purple-400 font-mono text-lg mb-3">{feat.icon}</div>
+                  <h3 className="text-sm font-bold text-white mb-1">{feat.title}</h3>
+                  <p className="text-xs text-gray-500 font-mono leading-relaxed">{feat.desc}</p>
                 </div>
               ))}
             </div>
@@ -275,61 +371,50 @@ export default function HomePage() {
         </section>
 
         {/* ===== APPLY CTA ===== */}
-        <section
-          id="apply"
-          className="relative py-24 lg:py-32 bg-white overflow-hidden"
-        >
-          <div className="absolute inset-0 bg-grid opacity-30" />
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-brand-200/40 to-accent-200/40 blur-3xl" />
+        <section id="apply" className="relative py-24 lg:py-32 bg-surface-light border-t border-purple-900/20">
+          <div className="absolute inset-0 bg-grid opacity-20" />
+          <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-md bg-purple-950/40 border border-purple-800/40 font-mono text-xs mb-8">
+              <span className="text-green-400">●</span>
+              <span className="text-gray-400">{cohortDeadline}</span>
+              <span className="text-gray-600">|</span>
+              <span className="text-cyan-300">0 spots remaining</span>
+            </div>
 
-          <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <span className="inline-block px-3 py-1 rounded-full bg-accent-100 text-accent-700 text-xs font-semibold uppercase tracking-wider mb-4">
-              Start Your Journey
-            </span>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-brand-950 mb-6">
-              Ready to build your future?
+            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
+              Ready to <span className="text-gradient">ship</span> your future?
             </h2>
-            <p className="text-lg text-brand-600 mb-10 max-w-xl mx-auto">
-              Applications are open for our Winter 2026 cohort. No coding experience? No problem.
-              We teach you everything from scratch.
+            <p className="text-base text-gray-400 font-mono max-w-xl mx-auto mb-10">
+              Applications are reviewed on a rolling basis. The Winter 2026 cohort starts January 12.
+              No upfront tuition — pay after you land a job.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="#"
-                className="inline-flex items-center gap-2 px-10 py-4 rounded-full bg-gradient-to-r from-brand-600 to-accent-600 text-white text-lg font-semibold shadow-xl shadow-brand-500/30 hover:shadow-brand-500/50 hover:scale-105 transition-all duration-200"
+                href="/admissions"
+                className="group inline-flex items-center gap-3 px-8 py-4 rounded-lg bg-gradient-to-r from-purple-600 to-cyan-500 text-white text-base font-semibold shadow-xl shadow-purple-500/25 hover:shadow-purple-500/50 hover:scale-105 transition-all duration-200"
               >
-                Apply Free Today
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <span className="font-mono text-xs opacity-70">$ ./apply</span>
+                Start Your Application
+                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
               </a>
+              <a
+                href="/curriculum"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-lg border border-purple-700/50 text-gray-300 font-mono text-sm hover:bg-purple-950/30 hover:border-purple-500/50 transition-all duration-200"
+              >
+                <span className="text-purple-400">#</span>
+                Read the Syllabus
+              </a>
             </div>
 
-            <p className="mt-6 text-sm text-brand-400">
-              No upfront tuition. Pay only after you land a job — starting at $0 down.
-            </p>
+            {/* Footer terminal line */}
+            <div className="mt-16 font-mono text-[10px] text-gray-600">
+              <span className="text-gray-500">└─[EOF]─[byteforge@terminal:~/bootcamp]─[build successful]</span>
+            </div>
           </div>
         </section>
-
-        {/* ===== FOOTER ===== */}
-        <footer className="bg-brand-950 border-t border-brand-800">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-accent-500 flex items-center justify-center">
-                  <span className="text-white font-bold text-xs font-mono">&lt;/&gt;</span>
-                </div>
-                <span className="text-sm font-display font-bold text-white">
-                  Byteforge<span className="text-accent-500">_</span>
-                </span>
-              </div>
-              <p className="text-sm text-brand-400">
-                &copy; {new Date().getFullYear()} Byteforge Academy. All rights reserved.
-              </p>
-            </div>
-          </div>
-        </footer>
       </main>
     </>
   );
