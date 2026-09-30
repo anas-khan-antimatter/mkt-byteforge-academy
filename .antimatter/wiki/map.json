@@ -1,21 +1,70 @@
 {
   "root": "/tmp/am-ws/c-1790732960888-yt28d",
   "name": "c-1790732960888-yt28d",
-  "generatedAt": "2026-09-30T15:54:40.098Z",
-  "fileCount": 1,
-  "dirCount": 1,
+  "generatedAt": "2026-09-30T16:42:54.906Z",
+  "fileCount": 18,
+  "dirCount": 4,
   "languages": {
-    "Markdown": 1
+    "Markdown": 6,
+    "JSON": 3,
+    "TypeScript": 5,
+    "JavaScript": 2,
+    "CSS": 1
   },
   "keyFiles": [
-    "README.md"
+    "package.json",
+    "README.md",
+    "tsconfig.json"
   ],
   "directories": [
     {
+      "dir": ".antimatter/wiki",
+      "fileCount": 6,
+      "files": [
+        "index.md",
+        "log.md",
+        "map.json",
+        "map.md",
+        "overview.md",
+        "schema.md"
+      ],
+      "symbols": []
+    },
+    {
       "dir": "(root)",
+      "fileCount": 8,
+      "files": [
+        ".gitignore",
+        "next-env.d.ts",
+        "next.config.js",
+        "package.json",
+        "postcss.config.js",
+        "README.md",
+        "tailwind.config.ts",
+        "tsconfig.json"
+      ],
+      "symbols": []
+    },
+    {
+      "dir": "src/app",
+      "fileCount": 3,
+      "files": [
+        "globals.css",
+        "layout.tsx",
+        "page.tsx"
+      ],
+      "symbols": [
+        {
+          "name": "metadata",
+          "kind": "const"
+        }
+      ]
+    },
+    {
+      "dir": "src/components",
       "fileCount": 1,
       "files": [
-        "README.md"
+        "Nav.tsx"
       ],
       "symbols": []
     }
