@@ -4,11 +4,11 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Byteforge Academy — Code Your Future",
   description:
-    "Transform your career with Byteforge Academy. Intensive coding bootcamps in software engineering, data science, and UX design. Land a tech job — guaranteed.",
+    "Transform your career with Byteforge Academy. Intensive coding bootcamps — terminal-style.",
   openGraph: {
     title: "Byteforge Academy — Code Your Future",
     description:
-      "Transform your career with Byteforge Academy. Intensive coding bootcamps in software engineering, data science, and UX design. Land a tech job — guaranteed.",
+      "Transform your career with Byteforge Academy. Intensive coding bootcamps — terminal-style.",
     type: "website",
     locale: "en_US",
   },
