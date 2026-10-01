@@ -82,7 +82,7 @@ export default function OutcomesPage() {
                   max={150000}
                   step={5000}
                   value={preSalary}
-                  onChange={(e) => { setPreSalary(parseInt(e.target.value)); setCalculated(false); }}
+                  onChange={(e) => { setPreSalary(Number(e.target.value)); setCalculated(false); }}
                   className="w-full accent-terminal-green"
                 />
                 <span className="text-sm font-mono text-terminal-muted">${(preSalary / 1000).toFixed(0)}k</span>

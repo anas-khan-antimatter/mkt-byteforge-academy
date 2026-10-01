@@ -21,6 +21,15 @@ const TEST_CASES: { args: [number, number]; expected: number }[] = [
   { args: [1.5, 2.5], expected: 4 },
 ];
 
+export async function GET() {
+  return NextResponse.json({
+    status: "ok",
+    endpoint: "kata",
+    methods: ["POST"],
+    description: "Submit JS code for validation against test cases. POST with { code: string }",
+  });
+}
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();
