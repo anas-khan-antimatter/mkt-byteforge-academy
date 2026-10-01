@@ -1,0 +1,44 @@
+{
+  "schema": 1,
+  "runsOn": "ubuntu-latest",
+  "setup": [
+    "npm ci"
+  ],
+  "build": [
+    "npm run build"
+  ],
+  "probes": [
+    {
+      "kind": "browser",
+      "url": "/"
+    },
+    {
+      "kind": "browser",
+      "url": "/apply"
+    },
+    {
+      "kind": "browser",
+      "url": "/curriculum"
+    },
+    {
+      "kind": "browser",
+      "url": "/education"
+    },
+    {
+      "kind": "browser",
+      "url": "/fail"
+    },
+    {
+      "kind": "browser",
+      "url": "/playground"
+    },
+    {
+      "kind": "http",
+      "url": "/api/apply"
+    },
+    {
+      "kind": "http",
+      "url": "/api/kata"
+    }
+  ]
+}
