@@ -1,14 +1,15 @@
 {
   "root": "/tmp/am-ws/c-1790732960888-yt28d",
   "name": "c-1790732960888-yt28d",
-  "generatedAt": "2026-09-30T17:45:54.316Z",
-  "fileCount": 23,
-  "dirCount": 8,
+  "generatedAt": "2026-10-02T22:10:20.428Z",
+  "fileCount": 30,
+  "dirCount": 16,
   "languages": {
+    "JSON": 4,
     "Markdown": 6,
-    "JSON": 3,
-    "TypeScript": 10,
-    "JavaScript": 2,
+    "JavaScript": 4,
+    "YAML": 1,
+    "TypeScript": 13,
     "CSS": 1
   },
   "keyFiles": [
@@ -17,6 +18,14 @@
     "tsconfig.json"
   ],
   "directories": [
+    {
+      "dir": ".antimatter/lanes",
+      "fileCount": 1,
+      "files": [
+        "ship.json"
+      ],
+      "symbols": []
+    },
     {
       "dir": ".antimatter/wiki",
       "fileCount": 6,
@@ -31,11 +40,27 @@
       "symbols": []
     },
     {
+      "dir": ".github/antimatter",
+      "fileCount": 2,
+      "files": [
+        "lane-runner.mjs",
+        "store-release.mjs"
+      ],
+      "symbols": []
+    },
+    {
+      "dir": ".github/workflows",
+      "fileCount": 1,
+      "files": [
+        "antimatter-lane.yml"
+      ],
+      "symbols": []
+    },
+    {
       "dir": "(root)",
-      "fileCount": 8,
+      "fileCount": 7,
       "files": [
         ".gitignore",
-        "next-env.d.ts",
         "next.config.js",
         "package.json",
         "postcss.config.js",
@@ -61,15 +86,7 @@
       ]
     },
     {
-      "dir": "src/app/admissions",
-      "fileCount": 1,
-      "files": [
-        "page.tsx"
-      ],
-      "symbols": []
-    },
-    {
-      "dir": "src/app/api/tutor",
+      "dir": "src/app/api/apply",
       "fileCount": 1,
       "files": [
         "route.ts"
@@ -78,8 +95,37 @@
         {
           "name": "POST",
           "kind": "fn"
+        },
+        {
+          "name": "GET",
+          "kind": "fn"
         }
       ]
+    },
+    {
+      "dir": "src/app/api/kata",
+      "fileCount": 1,
+      "files": [
+        "route.ts"
+      ],
+      "symbols": [
+        {
+          "name": "GET",
+          "kind": "fn"
+        },
+        {
+          "name": "POST",
+          "kind": "fn"
+        }
+      ]
+    },
+    {
+      "dir": "src/app/apply",
+      "fileCount": 1,
+      "files": [
+        "page.tsx"
+      ],
+      "symbols": []
     },
     {
       "dir": "src/app/curriculum",
@@ -90,7 +136,39 @@
       "symbols": []
     },
     {
-      "dir": "src/app/projects",
+      "dir": "src/app/curriculum/[module]",
+      "fileCount": 1,
+      "files": [
+        "page.tsx"
+      ],
+      "symbols": []
+    },
+    {
+      "dir": "src/app/education",
+      "fileCount": 1,
+      "files": [
+        "page.tsx"
+      ],
+      "symbols": []
+    },
+    {
+      "dir": "src/app/fail",
+      "fileCount": 1,
+      "files": [
+        "page.tsx"
+      ],
+      "symbols": []
+    },
+    {
+      "dir": "src/app/outcomes",
+      "fileCount": 1,
+      "files": [
+        "page.tsx"
+      ],
+      "symbols": []
+    },
+    {
+      "dir": "src/app/playground",
       "fileCount": 1,
       "files": [
         "page.tsx"
@@ -99,9 +177,8 @@
     },
     {
       "dir": "src/components",
-      "fileCount": 2,
+      "fileCount": 1,
       "files": [
-        "CodingChallenge.tsx",
         "Nav.tsx"
       ],
       "symbols": []
