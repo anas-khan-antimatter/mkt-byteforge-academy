@@ -271,22 +271,22 @@ export default function HomePage() {
                   a: "Students receive 1:1 mentorship from industry professionals, daily office hours, a dedicated career coach, and access to our alumni network. Our platform includes hands-on coding challenges, peer code reviews, and 24/7 community support. We also provide resume workshops, mock interviews, and direct connections with 600+ hiring partners.",
                 },
               ].map((faq, i) => {
-                const [open, setOpen] = useState(false);
+                const isOpen = openFaq === i;
                 return (
                   <div
                     key={i}
                     className="rounded-xl bg-terminal-raised/40 border border-terminal-border/60 overflow-hidden transition-all duration-300"
                   >
                     <button
-                      onClick={() => setOpen(!open)}
+                      onClick={() => setOpenFaq(isOpen ? null : i)}
                       className="w-full flex items-center justify-between px-6 py-5 text-left text-sm font-semibold text-terminal-text hover:text-terminal-green transition-colors"
-                      aria-expanded={open}
+                      aria-expanded={isOpen}
                     >
                       <span className="font-mono text-xs text-terminal-green mr-3">$</span>
                       <span className="flex-1">{faq.q}</span>
                       <svg
                         className={`w-5 h-5 text-terminal-muted transition-transform duration-300 ${
-                          open ? "rotate-180" : ""
+                          isOpen ? "rotate-180" : ""
                         }`}
                         fill="none"
                         viewBox="0 0 24 24"
@@ -297,7 +297,7 @@ export default function HomePage() {
                     </button>
                     <div
                       className={`overflow-hidden transition-all duration-300 ${
-                        open ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
+                        isOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
                       }`}
                     >
                       <div className="px-6 pb-5 text-sm text-terminal-muted leading-relaxed border-t border-terminal-border/40 pt-4">
