@@ -34,6 +34,7 @@ const TERMINAL_LINES = [
 
 export default function HomePage() {
   const [mounted, setMounted] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -239,6 +240,73 @@ export default function HomePage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                 </svg>
               </a>
+            </div>
+          </div>
+        </section>
+
+        {/* ===== FAQ ACCORDION ===== */}
+        <section id="faq" className="relative py-20 lg:py-28 bg-terminal-bg overflow-hidden border-t border-terminal-border">
+          <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-14">
+              <p className="text-xs font-mono text-terminal-dim mb-4">
+                <span className="text-terminal-green">$</span> ./faq --help
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-display font-bold text-terminal-text mb-4">
+                Frequently asked questions
+              </h2>
+            </div>
+
+            <div className="space-y-4">
+              {[
+                {
+                  q: "What courses does Byteforge Academy offer?",
+                  a: "Byteforge Academy offers three intensive tracks: Software Engineering (16 weeks, covering JS/TS, React, Node.js, Python, and cloud), Data Science & AI (14 weeks, covering Python, scikit-learn, TensorFlow, LLMs), and UX Design & Research (12 weeks, covering design thinking, Figma, user research, and prototyping). Each track includes live instruction, real-world projects, and career support.",
+                },
+                {
+                  q: "How much does tuition cost and are there payment options?",
+                  a: "Tuition varies by track — we offer income share agreements (ISAs), monthly payment plans, and need-based scholarships. Our admissions team works with every student to find a plan that fits. Many students also qualify for employer sponsorship. Contact us for a personalized breakdown with no obligation.",
+                },
+                {
+                  q: "What kind of support do students get during the program?",
+                  a: "Students receive 1:1 mentorship from industry professionals, daily office hours, a dedicated career coach, and access to our alumni network. Our platform includes hands-on coding challenges, peer code reviews, and 24/7 community support. We also provide resume workshops, mock interviews, and direct connections with 600+ hiring partners.",
+                },
+              ].map((faq, i) => {
+                const [open, setOpen] = useState(false);
+                return (
+                  <div
+                    key={i}
+                    className="rounded-xl bg-terminal-raised/40 border border-terminal-border/60 overflow-hidden transition-all duration-300"
+                  >
+                    <button
+                      onClick={() => setOpen(!open)}
+                      className="w-full flex items-center justify-between px-6 py-5 text-left text-sm font-semibold text-terminal-text hover:text-terminal-green transition-colors"
+                      aria-expanded={open}
+                    >
+                      <span className="font-mono text-xs text-terminal-green mr-3">$</span>
+                      <span className="flex-1">{faq.q}</span>
+                      <svg
+                        className={`w-5 h-5 text-terminal-muted transition-transform duration-300 ${
+                          open ? "rotate-180" : ""
+                        }`}
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    <div
+                      className={`overflow-hidden transition-all duration-300 ${
+                        open ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
+                      }`}
+                    >
+                      <div className="px-6 pb-5 text-sm text-terminal-muted leading-relaxed border-t border-terminal-border/40 pt-4">
+                        {faq.a}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
