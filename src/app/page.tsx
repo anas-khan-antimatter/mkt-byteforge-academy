@@ -269,6 +269,14 @@ export default function HomePage() {
                   a: "Tuition varies by track — we offer income share agreements (ISAs), monthly payment plans, and need-based scholarships. Our admissions team works with every student to find a plan that fits. Many students also qualify for employer sponsorship. Contact us for a personalized breakdown with no obligation.",
                 },
                 {
+                  q: "Do you offer certificates or credentials upon completion?",
+                  a: "Yes — graduates receive a verifiable digital certificate and a portfolio of real-world projects. Our Software Engineering and Data Science tracks also prepare you for industry certifications (AWS, Meta, Google). We provide detailed competency transcripts and credential verification for employers.",
+                },
+                {
+                  q: "What is the schedule and time commitment?",
+                  a: "All tracks are full-time and run Monday–Friday, approximately 9:00 AM – 5:00 PM ET, with live instruction, labs, and study blocks. Expect 40–50 hours per week including project work. Cohorts start quarterly — the next one begins Winter 2026 (January 12). Part-time evening options are coming in Summer 2026.",
+                },
+                {
                   q: "What kind of support do students get during the program?",
                   a: "Students receive 1:1 mentorship from industry professionals, daily office hours, a dedicated career coach, and access to our alumni network. Our platform includes hands-on coding challenges, peer code reviews, and 24/7 community support. We also provide resume workshops, mock interviews, and direct connections with 600+ hiring partners.",
                 },
@@ -280,9 +288,11 @@ export default function HomePage() {
                     className="rounded-xl bg-terminal-raised/40 border border-terminal-border/60 overflow-hidden transition-all duration-300"
                   >
                     <button
+                      id={faqBtnId(i)}
                       onClick={() => setOpenFaq(isOpen ? null : i)}
                       className="w-full flex items-center justify-between px-6 py-5 text-left text-sm font-semibold text-terminal-text hover:text-terminal-green transition-colors"
                       aria-expanded={isOpen}
+                      aria-controls={faqId(i)}
                     >
                       <span className="font-mono text-xs text-terminal-green mr-3">$</span>
                       <span className="flex-1">{faq.q}</span>
@@ -293,11 +303,15 @@ export default function HomePage() {
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
+                        aria-hidden="true"
                       >
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     </button>
                     <div
+                      id={faqId(i)}
+                      role="region"
+                      aria-labelledby={faqBtnId(i)}
                       className={`overflow-hidden transition-all duration-300 ${
                         isOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
                       }`}
