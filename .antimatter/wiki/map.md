@@ -1,11 +1,11 @@
-# Workspace Map — c-1790732960888-yt28d
-_Generated 2026-10-02 · 30 files · 16 directories_  
+# Workspace Map — ch_mv5h58l6_1
+_Generated 2026-10-12 · 31 files · 16 directories_  
 _Deterministic structural map. Regenerate with the `map` tool or "Antimatter: Map Workspace". Do not hand-edit._
 
 ## Languages
 - TypeScript: 13
 - Markdown: 6
-- JSON: 4
+- JSON: 5
 - JavaScript: 4
 - YAML: 1
 - CSS: 1
@@ -28,8 +28,8 @@ _Deterministic structural map. Regenerate with the `map` tool or "Antimatter: Ma
 ### `.github/workflows` — 1 file
 - files: antimatter-lane.yml
 
-### `(root)` — 7 files
-- files: .gitignore, next.config.js, package.json, postcss.config.js, README.md, tailwind.config.ts, tsconfig.json
+### `(root)` — 8 files
+- files: .gitignore, next.config.js, package-lock.json, package.json, postcss.config.js, README.md, tailwind.config.ts, tsconfig.json
 
 ### `src/app` — 3 files
 - symbols: metadata (const)
