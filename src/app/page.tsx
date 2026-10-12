@@ -35,6 +35,8 @@ const TERMINAL_LINES = [
 export default function HomePage() {
   const [mounted, setMounted] = useState(false);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+  const faqId = (i: number) => `faq-panel-${i}`;
+  const faqBtnId = (i: number) => `faq-btn-${i}`;
   const heroRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
